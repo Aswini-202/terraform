@@ -2,6 +2,13 @@ provider "aws" {
   region  = "ap-south-1"
  # access_key = "aws_key" # to replace with user key
  # secret_key = "aws_secret_key" # to replace with user secrect key
+  parameters {
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
+    } 
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    }
 } 
 
 resource "aws_instance" "tharun" {
